@@ -24,11 +24,18 @@ export default function CartDrawer() {
             transition={{ type: "spring", damping: 28, stiffness: 260 }}
             className="fixed right-0 top-0 h-full w-full max-w-md bg-ink-soft z-[70] flex flex-col border-l border-white/10"
           >
-            <div className="flex items-center justify-between px-6 py-6 border-b border-white/10">
+            <div
+              className="flex items-center justify-between px-6 pb-6 border-b border-white/10"
+              style={{ paddingTop: "calc(1.5rem + env(safe-area-inset-top))" }}
+            >
               <h3 className="font-display text-xl tracking-wide text-bone">
                 Your Bag ({items.reduce((n, i) => n + i.qty, 0)})
               </h3>
-              <button onClick={close} className="text-bone/70 hover:text-gold">
+              <button
+                aria-label="Close cart"
+                onClick={close}
+                className="text-bone/70 hover:text-gold p-2.5 -m-0.5"
+              >
                 <X size={20} strokeWidth={1.5} />
               </button>
             </div>
@@ -74,7 +81,10 @@ export default function CartDrawer() {
               ))}
             </div>
 
-            <div className="px-6 py-6 border-t border-white/10">
+            <div
+              className="px-6 pt-6 border-t border-white/10"
+              style={{ paddingBottom: "calc(1.5rem + env(safe-area-inset-bottom))" }}
+            >
               <div className="flex justify-between text-bone mb-4 text-sm">
                 <span>Subtotal</span>
                 <span className="text-gold">${total}</span>

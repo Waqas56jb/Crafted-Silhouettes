@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
+import RevealText from "./RevealText";
+import Magnetic from "./Magnetic";
 
 export default function Newsletter() {
   const [email, setEmail] = useState("");
@@ -20,8 +22,11 @@ export default function Newsletter() {
         transition={{ duration: 0.7 }}
         className="max-w-xl mx-auto text-center"
       >
-        <h2 className="font-display text-3xl md:text-4xl mb-4">
-          Join the <span className="italic">Inner Circle</span>
+        <h2 className="font-display text-3xl md:text-4xl mb-4 flex items-center justify-center gap-2">
+          <RevealText>Join the</RevealText>
+          <RevealText delay={0.1} className="italic">
+            Inner Circle
+          </RevealText>
         </h2>
         <p className="text-ink/60 text-sm mb-8">
           Early access to new drops, private sales, and styling notes —
@@ -45,12 +50,15 @@ export default function Newsletter() {
               placeholder="Enter your email"
               className="flex-1 bg-transparent border border-ink/20 px-5 py-3.5 text-sm placeholder:text-ink/40 focus:outline-none focus:border-ink"
             />
-            <button
-              type="submit"
-              className="bg-ink text-bone px-7 py-3.5 text-xs tracking-[0.2em] uppercase hover:bg-ink-soft transition-colors"
-            >
-              Subscribe
-            </button>
+            <Magnetic strength={0.25}>
+              <button
+                type="submit"
+                data-cursor-hover
+                className="w-full bg-ink text-bone px-7 py-3.5 text-xs tracking-[0.2em] uppercase hover:bg-ink-soft transition-colors"
+              >
+                Subscribe
+              </button>
+            </Magnetic>
           </form>
         )}
       </motion.div>

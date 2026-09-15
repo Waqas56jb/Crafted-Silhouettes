@@ -1,42 +1,45 @@
 import { motion } from "framer-motion";
 import { categories } from "../data/products";
+import RevealText from "./RevealText";
+import RevealImage from "./RevealImage";
 
 export default function Categories() {
   return (
     <section className="bg-ink py-24 px-6" id="shop">
       <div className="max-w-7xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.4 }}
-          transition={{ duration: 0.7 }}
-          className="flex items-end justify-between mb-12"
-        >
+        <div className="flex items-end justify-between mb-12">
           <h2 className="font-display text-4xl md:text-5xl text-bone">
-            Shop by <span className="italic text-gold">Category</span>
+            <RevealText>Shop by</RevealText>
+            <RevealText delay={0.12} className="italic text-gold">
+              Category
+            </RevealText>
           </h2>
-          <p className="hidden md:block text-bone/50 text-sm max-w-xs text-right">
+          <motion.p
+            initial={{ opacity: 0, y: 12 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.6 }}
+            transition={{ duration: 0.7, delay: 0.3 }}
+            className="hidden md:block text-bone/50 text-sm max-w-xs text-right"
+          >
             Four capsules, endless combinations. Built to move seamlessly
             from studio to street.
-          </p>
-        </motion.div>
+          </motion.p>
+        </div>
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           {categories.map((cat, i) => (
-            <motion.a
+            <a
               href="#"
               key={cat.id}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.3 }}
-              transition={{ duration: 0.6, delay: i * 0.08 }}
-              className="group relative aspect-[3/4] overflow-hidden bg-ink-soft"
+              data-cursor-hover
+              className="group relative aspect-[3/4] block"
             >
-              <img
+              <RevealImage
                 src={cat.image}
                 alt={cat.label}
-                loading="lazy"
-                className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
+                delay={i * 0.1}
+                className="absolute inset-0"
+                imgClassName="transition-transform duration-700 ease-out group-hover:scale-110"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-ink/90 via-ink/10 to-transparent" />
               <div className="absolute bottom-0 left-0 p-5">
@@ -45,7 +48,7 @@ export default function Categories() {
                 </span>
                 <div className="h-px w-0 bg-gold mt-2 transition-all duration-500 group-hover:w-12" />
               </div>
-            </motion.a>
+            </a>
           ))}
         </div>
       </div>

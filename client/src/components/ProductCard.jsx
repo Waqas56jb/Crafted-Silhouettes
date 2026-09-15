@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Plus } from "lucide-react";
 import { useCartStore } from "../store/cartStore";
+import RevealImage from "./RevealImage";
 
 export default function ProductCard({ product, index = 0 }) {
   const add = useCartStore((s) => s.add);
@@ -13,29 +14,31 @@ export default function ProductCard({ product, index = 0 }) {
       transition={{ duration: 0.6, delay: (index % 4) * 0.08 }}
       className="group"
     >
-      <div className="relative aspect-[3/4] overflow-hidden bg-ink-soft">
-        <img
+      <div className="relative aspect-[3/4]">
+        <RevealImage
           src={product.image}
           alt={product.name}
-          loading="lazy"
-          className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+          delay={(index % 4) * 0.08}
+          className="absolute inset-0 bg-ink-soft"
+          imgClassName="transition-transform duration-700 group-hover:scale-105"
         />
         <button
           onClick={() => add(product)}
-          className="absolute bottom-4 right-4 w-10 h-10 rounded-full bg-bone/95 text-ink flex items-center justify-center opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 hover:bg-gold"
+          data-cursor-hover
+          className="absolute bottom-4 right-4 z-20 w-10 h-10 rounded-full bg-bone/95 text-ink flex items-center justify-center opacity-100 md:opacity-0 md:translate-y-2 md:group-hover:opacity-100 md:group-hover:translate-y-0 transition-all duration-300 hover:bg-gold"
           aria-label={`Add ${product.name} to bag`}
         >
           <Plus size={16} strokeWidth={1.5} />
         </button>
       </div>
-      <div className="mt-4 flex items-start justify-between">
-        <div>
-          <p className="text-bone text-sm">{product.name}</p>
+      <div className="mt-4 flex items-start justify-between gap-2">
+        <div className="min-w-0">
+          <p className="text-bone text-sm truncate">{product.name}</p>
           <p className="text-bone/40 text-xs mt-1 uppercase tracking-wide">
             {product.category}
           </p>
         </div>
-        <span className="text-gold text-sm">${product.price}</span>
+        <span className="text-gold text-sm shrink-0">${product.price}</span>
       </div>
     </motion.div>
   );

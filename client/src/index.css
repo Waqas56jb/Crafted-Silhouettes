@@ -24,6 +24,14 @@ body {
   overflow-x: hidden;
 }
 
+@media (hover: hover) and (pointer: fine) {
+  body,
+  a,
+  button {
+    cursor: none;
+  }
+}
+
 ::selection {
   background: var(--color-gold);
   color: var(--color-ink);

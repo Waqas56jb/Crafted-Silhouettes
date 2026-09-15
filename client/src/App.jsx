@@ -9,21 +9,28 @@ import Lookbook from "./components/Lookbook";
 import Testimonials from "./components/Testimonials";
 import Newsletter from "./components/Newsletter";
 import Footer from "./components/Footer";
+import Preloader from "./components/Preloader";
+import CustomCursor from "./components/CustomCursor";
+import SmoothScroll from "./components/SmoothScroll";
 
 export default function App() {
   return (
-    <div className="bg-ink">
-      <Navbar />
-      <CartDrawer />
-      <Hero />
-      <MarqueeStrip />
-      <Categories />
-      <FeaturedProducts />
-      <BrandStory />
-      <Lookbook />
-      <Testimonials />
-      <Newsletter />
-      <Footer />
-    </div>
+    <SmoothScroll>
+      <div className="bg-ink">
+        <Preloader />
+        <CustomCursor />
+        <Navbar />
+        <CartDrawer />
+        <Hero />
+        <MarqueeStrip />
+        <Categories />
+        <FeaturedProducts />
+        <BrandStory />
+        <Lookbook />
+        <Testimonials />
+        <Newsletter />
+        <Footer />
+      </div>
+    </SmoothScroll>
   );
 }
